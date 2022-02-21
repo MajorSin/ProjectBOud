@@ -14,7 +14,7 @@ namespace MyApp {
             string json = System.IO.File.ReadAllText("../../../films.json");
             var films = Newtonsoft.Json.JsonConvert.DeserializeObject<List<filmOverzicht>>(json);
             foreach (var film in films) {
-                Console.WriteLine($"- {film.Title} ({film.year})\n   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris cursus quis dolor cursus porta. Nulla et arcu suscipit, blandit lectus a, pellentesque odio. Nunc suscipit est a lacus faucibus, ut vehicula metus efficitur. Integer nec convallis nisi. Aenean justo diam, blandit quis porttitor vitae, tincidunt vel ex. \n");
+                Console.WriteLine($"- {film.Title} ({film.year})\n   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris cursus quis dolor cursus porta. Nulla et arcu suscipit, blandit lectus a, pellentesque odio. Nunc suscipit est a lacus faucibus, ut vehicula metus efficitur. Integer nec convallis nisi. Aenean justo diam, blandit quis porttitor vitae, tincidunt vel. \n");
             }
         }
     }
