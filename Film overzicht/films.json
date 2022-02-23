@@ -1,14 +1,24 @@
 [
     {
-        "title": "Mr Bean's Holiday",
-        "year": 2007
+        "id": 1,
+        "titel": "Beetlejuice",
+        "jaar": 1998,
+        "taal": [ "Engels" ],
+        "looptijd": 92,
+        "genre": [ "comedy", "fantasy" ],
+        "directeur": "Tim Burton",
+        "acteurs": "Alec Baldwin, Geena Davis, Annie McEnroe & Maurice Page",
+        "plot": "Een paar onlangs overleden geesten nemen de hulp in van een 'bio-exorcist' om de irritante nieuwe eigenaren van hun huis te verwijderen."
     },
     {
-        "title": "Avatar",
-        "year": "2009"
-    },
-    {
-        "title": "Star Wars: The Force Awakens",
-        "year": "2015"
+        "id": 2,
+        "titel": "The Cotton Club",
+        "jaar": 1994,
+        "taal": [ "Engels"],
+        "looptijd": 127,
+        "genre": [ "crime", "drama", "music", "fantasy" ],
+        "directeur": "Francis Ford Coppola",
+        "acteurs": "Richard Gere, Gregory Hines, Diane Lane & Lonette McKee",
+        "plot": "De Cotton Club was een beroemde nachtclub in Harlem. Het verhaal volgt de mensen die de club bezochten, degenen die het runnen, en is doorspekt met de jazzmuziek die het zo beroemd maakte."
     }
 ]
