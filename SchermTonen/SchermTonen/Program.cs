@@ -1,9 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SchermTonen
 {
     public class Program
     {
+        static List<User> users = new List<User>();
+
+        public class User
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+            public bool IsLoggedIn { get; set; }
+        }
+
         public class Router
         {
             public string CurrentScreen { get; set; }
@@ -11,34 +22,35 @@ namespace SchermTonen
             // Toont het scherm waar je nu op bent.
             public void displayScreen()
             {
-                if (string.IsNullOrEmpty(CurrentScreen))
-                {
-                    CurrentScreen = "Home";
-                    displayHome();
-                }
-                else if (CurrentScreen == "Home")
-                {
-                    displayHome();
-                }
-                else if (CurrentScreen == "Reserveren")
-                {
-                    displayReserveren();
-                }
-                else if (CurrentScreen == "Films")
-                {
-                    displayFilms();
-                }
-                else if (CurrentScreen == "Eten & Drinken")
-                {
-                    displayEtenDrinken();
-                }
-                else if (CurrentScreen == "Informatie")
-                {
-                    displayInformatie();
-                }
-                else
-                {
-                    displayInloggen();
+                switch (CurrentScreen) {
+                    case "Authorizatie":
+                        displayAuthorization();
+                        break;
+                    case "Inloggen":
+                        displayInloggen();
+                        break;
+                    case "Registreren":
+                        displayRegistreren();
+                        break;
+                    case "Home":
+                        displayHome();
+                        break;
+                    case "Reserveren":
+                        displayReserveren();
+                        break;
+                    case "Films":
+                        displayFilms();
+                        break;
+                    case "Eten & Drinken":
+                        displayEtenDrinken();
+                        break;
+                    case "Informatie":
+                        displayInformatie();
+                        break;
+                    default:
+                        CurrentScreen = "Authorizatie";
+                        displayAuthorization();
+                        break;
                 }
             }
 
@@ -100,6 +112,59 @@ namespace SchermTonen
                 return currentSelected;
             }
 
+            // Authorisatie scherm.
+            private void displayAuthorization()
+            {
+                ConsoleColor color = ConsoleColor.White;
+                string title = @"
+              __________
+           ///^^^^{}^^^^\\\
+         //..@----------@..\\
+        ///&%&%&%&/\&%&%&%&\\\
+        ||&%&%&_.'  '._&%&%&||
+        ||&%'''        '''%&||
+        ||&%&  Bioscoop  &%&||
+        ||&%&             %&||
+        ||&%&            &%&||
+  ______||&%&&==========&&%&||______
+                ";
+                string underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                showHeader(color, title, underline);
+
+                string[] options = new string[]
+                {
+                    "Inloggen",
+                    "Registreren",
+                    "Doorgaan als gast",
+                    "Beeïndigen",
+                };
+
+                int choice = awaitResponse(options);
+
+                switch (choice)
+                {
+                    case 0:
+                        CurrentScreen = "Inloggen";
+                        Console.Clear();
+                        displayScreen();
+                        break;
+                    case 1:
+                        CurrentScreen = "Registreren";
+                        Console.Clear();
+                        displayScreen();
+                        break;
+                    case 2:
+                        CurrentScreen = "Home";
+                        Console.Clear();
+                        displayScreen();
+                        break;
+                    default:
+                        Console.Clear();
+                        Environment.Exit(0);
+                        break;
+                }
+            }
+
             // Lay-out van de header teruggeven.
             private void showHeader(ConsoleColor color, string title, string underline)
             {
@@ -110,20 +175,130 @@ namespace SchermTonen
                 Console.ResetColor();
             }
 
+            // Inlog scherm.
+            private void displayInloggen()
+            {
+                ConsoleColor color = ConsoleColor.Cyan;
+                string title = @"
+   _____           _                                        
+  |_   _|         | |                                       
+    | |    _ __   | |   ___     __ _    __ _    ___   _ __  
+    | |   | '_ \  | |  / _ \   / _` |  / _` |  / _ \ | '_ \ 
+   _| |_  | | | | | | | (_) | | (_| | | (_| | |  __/ | | | |
+  |_____| |_| |_| |_|  \___/   \__, |  \__, |  \___| |_| |_|
+                               __/ |   __/ |               
+                              |___/   |___/
+                ";
+                string underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                showHeader(color, title, underline);
+
+                Console.WriteLine("[inloggen inhoud]\n");
+
+                string[] options = new string[]
+                {
+                    "Terug",
+                    "Beeïndigen"
+                };
+
+                int choice = awaitResponse(options);
+
+                if (choice == 0)
+                {
+                    CurrentScreen = "Authorizatie";
+                    Console.Clear();
+                    displayScreen();
+                }
+                else
+                {
+                    Console.Clear();
+                    Environment.Exit(0);
+                }
+            }
+
+            // Registratie scherm.
+            private void displayRegistreren()
+            {
+                ConsoleColor color = ConsoleColor.Cyan;
+                string title = @"
+   _____                   _         _                                       
+  |  __ \                 (_)       | |                                      
+  | |__) |   ___    __ _   _   ___  | |_   _ __    ___   _ __    ___   _ __  
+  |  _  /   / _ \  / _` | | | / __| | __| | '__|  / _ \ | '__|  / _ \ | '_ \ 
+  | | \ \  |  __/ | (_| | | | \__ \ | |_  | |    |  __/ | |    |  __/ | | | |
+  |_|  \_\  \___|  \__, | |_| |___/  \__| |_|     \___| |_|     \___| |_| |_|
+                   __/ |                                                    
+                  |___/    
+
+                ";
+
+                string underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                showHeader(color, title, underline);
+
+                Console.WriteLine("[registreren inhoud]\n");
+
+                string[] options = new string[]
+                {
+                    "Terug",
+                    "Beeïndigen"
+                };
+
+                int choice = awaitResponse(options);
+
+                if (choice == 0)
+                {
+                    CurrentScreen = "Authorizatie";
+                    Console.Clear();
+                    displayScreen();
+                }
+                else
+                {
+                    Console.Clear();
+                    Environment.Exit(0);
+                }
+            }
             // Hoofdscherm.
             private void displayHome()
             {
+                int currentHour = DateTime.Now.Hour;
+                Func<int, string> greeting = hour =>
+                {
+                    switch (hour)
+                    {
+                        case < 12:
+                            return "Goedemorgen,";
+                        case >= 12 and < 18:
+                            return "Goedemiddag,";
+                        default:
+                            return "Goedenavond,";
+                    }
+                };
+
                 ConsoleColor color =  ConsoleColor.White;
-                string title = @"
-   _    _                    __       _                _                                               
-  | |  | |                  / _|     | |              | |                                         
-  | |__| |   ___     ___   | |_    __| |  ___    ___  | |__     ___   _ __   _ __ ___
-  |  __  |  / _ \   / _ \  |  _|  / _` | / __|  / __| | '_ \   / _ \ | '__| | '_ ` _ \        
-  | |  | | | (_) | | (_) | | |   | (_| | \__ \ | (__  | | | | |  __/ | |    | | | | | |    
-  |_|  |_|  \___/   \___/  |_|    \__,_| |___/  \___| |_| |_|  \___| |_|    |_| |_| |_|
-                                                                                      
+                string result = greeting(currentHour);
+                string name = "";
+
+                if (!users.Any())
+                {
+                    name = "gast";   
+                }
+
+                string title = @$"     
+                            ___________I____________
+                           ( _____________________ ()
+                         _.-'|                    ||
+                     _.-'   ||     {result}   ||
+    ______       _.-'       ||        {name}!       ||
+   |      |_ _.-'           ||                    ||
+   |      |_|_              ||      Welkom op     ||
+   |______|   `-._          ||         het        ||
+      /\          `-._      ||     hoofdscherm.   ||
+     /  \             `-._  ||                    ||
+    /    \                `-||____________________||
+   /      \                 ------------------------
+  /________\___________________/________________\______
                 ";
-                string underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+
+                string underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
                 showHeader(color, title, underline);
 
                 string[] options = new string[] {
@@ -131,11 +306,19 @@ namespace SchermTonen
                     "Films",
                     "Eten & Drinken",
                     "Informatie",
-                    "Inloggen"
+                    "Terug"
                 };
 
                 int choice = awaitResponse(options);
-                CurrentScreen = options[choice];
+                if (choice == options.Length - 1)
+                {
+                    CurrentScreen = "Authorization";
+                }
+                else
+                {
+                    CurrentScreen = options[choice];
+                }
+
                 Console.Clear();
                 displayScreen();
             }
@@ -274,46 +457,6 @@ namespace SchermTonen
                 showHeader(color, title, underline);
 
                 Console.WriteLine("[informatie inhoud]\n");
-
-                string[] options = new string[]
-                {
-                    "Terug",
-                    "Beeïndigen"
-                };
-
-                int choice = awaitResponse(options);
-
-                if (choice == 0)
-                {
-                    CurrentScreen = "Home";
-                    Console.Clear();
-                    displayScreen();
-                }
-                else
-                {
-                    Console.Clear();
-                    Environment.Exit(0);
-                }
-            }
-
-            // Inlog scherm.
-            private void displayInloggen()
-            {
-                ConsoleColor color = ConsoleColor.Cyan;
-                string title = @"
-   _____           _                                        
-  |_   _|         | |                                       
-    | |    _ __   | |   ___     __ _    __ _    ___   _ __  
-    | |   | '_ \  | |  / _ \   / _` |  / _` |  / _ \ | '_ \ 
-   _| |_  | | | | | | | (_) | | (_| | | (_| | |  __/ | | | |
-  |_____| |_| |_| |_|  \___/   \__, |  \__, |  \___| |_| |_|
-                               __/ |   __/ |               
-                              |___/   |___/
-                ";
-                string underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-                showHeader(color, title, underline);
-
-                Console.WriteLine("[inloggen inhoud]\n");
 
                 string[] options = new string[]
                 {
