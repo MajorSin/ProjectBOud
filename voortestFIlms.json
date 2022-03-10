@@ -1,0 +1,100 @@
+﻿[
+	{
+		"id": 1,
+		"titel": "Beetlejuice",
+		"jaar": 1998,
+		"taal": [ "Engels" ],
+		"looptijd": 92,
+		"genre": [ "comedy", "fantasy" ],
+		"directeur": "Tim Burton",
+		"acteurs": "Alec Baldwin, Geena Davis, Annie McEnroe & Maurice Page",
+		"plot": "Een paar onlangs overleden geesten nemen de hulp in van een 'bio-exorcist' om de irritante nieuwe eigenaren van hun huis te verwijderen."
+	},
+	{
+		"id": 2,
+		"titel": "The Cotton Club",
+		"jaar": 1994,
+		"taal": [ "Engels" ],
+		"looptijd": 127,
+		"genre": [ "crime", "drama", "music", "fantasy" ],
+		"directeur": "Francis Ford Coppola",
+		"acteurs": "Richard Gere, Gregory Hines, Diane Lane & Lonette McKee",
+		"plot": "De Cotton Club was een beroemde nachtclub in Harlem. Het verhaal volgt de mensen die de club bezochten, degenen die het runnen, en is doorspekt met de jazzmuziek die het zo beroemd maakte."
+	},
+	{
+		"id": 3,
+		"titel": "The Shawshank Redemption",
+		"jaar": 1994,
+		"taal": [
+			"Engels"
+		],
+		"looptijd": 142,
+		"genre": [
+			"crime",
+			"drama"
+		],
+		"directeur": "Frank Darabont",
+		"acteurs": "Tim Robbins, Morgan Freeman, Bob Gunton & William Sadler",
+		"plot": "Twee gevangengenomen mannen hechten zich gedurende een aantal jaren aan elkaar en vinden troost en uiteindelijk verlossing door daden van normaal fatsoen."
+	},
+	{
+		"id": 4,
+		"titel": "Crocodile Dundee",
+		"jaar": 1986,
+		"taal": ["Engels"],
+		"looptijd": 97,
+		"genre": ["adventure","comedy","drama"],
+		"directeur": "Peter Faiman",
+		"acteurs": "Paul Hogan, Linda Kozlowski, John Meillon & David Gulpilil",
+		"plot": "Een Amerikaanse verslaggever gaat naar de Australische outback om een excentrieke krokodillenstroper te ontmoeten en nodigt hem uit in New York City."
+	},
+	{
+		"id": 5,
+		"titel": "Valkyrie",
+		"jaar": 2008,
+		"taal": ["Engels","Duits"],
+		"looptijd": 121,
+		"genre": ["drama","history","thriller",
+			"music",
+			"war"
+		],
+		"directeur": "Bryan Singer",
+		"acteurs": "Tom Cruise, Kenneth Branagh, Bill Nighy & Tom Wilkinson",
+		"plot": "Een dramatisering van de moordaanslag en de politieke coup van 20 juli door wanhopige afvallige Duitse legerofficieren tegen Hitler tijdens de Tweede Wereldoorlog."
+	},
+	{
+		"id": 6,
+		"titel": "Ratatouille",
+		"jaar": 2007,
+		"taal": [
+			"Engels"
+		],
+		"looptijd": 111,
+		"genre": [
+			"animation",
+			"comedy",
+			"family",
+			"adventure"
+		],
+		"directeur": "Brad Bird & Jan Pinkava",
+		"acteurs": "Patton Oswalt, Ian Holm, Lou Romano & Brian Dennehy",
+		"plot": "Een rat die kan koken sluit een ongebruikelijke alliantie met een jonge keukenmedewerker in een beroemd restaurant."
+	},
+	{
+		"id": 7,
+		"titel": "City of God",
+		"jaar": 2002,
+		"taal": [
+			"Portugees"
+		],
+		"looptijd": 130,
+		"genre": [
+			"crime",
+			"drama",
+			"history"
+		],
+		"directeur": "Fernando Meirelles & Kátia Lund",
+		"acteurs": "Alexandre Rodrigues, Leandro Firmino, Phellipe Haagensen & Douglas Silva",
+		"plot": "Twee jongens die opgroeien in een gewelddadige wijk van Rio de Janeiro nemen verschillende wegen: de een wordt fotograaf, de ander drugsdealer."
+	}
+]

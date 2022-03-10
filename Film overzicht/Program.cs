@@ -17,10 +17,6 @@ namespace MyApp
 			public string? Acteurs { get; set; }
 			public string? Plot { get; set; }
 		}
-		public class MyObject
-		{
-			public int OrderId { get; set; }
-		}
 		static void Main()
 		{
 			//LAAD JSON IN
@@ -30,11 +26,12 @@ namespace MyApp
 			Console.WriteLine("----------------------------\nBIOSCOOP HR - FILMS OVERZICHT\n----------------------------\nHier kunt u een overzicht van alle films vinden.\n");
 			//VRAAG VOOR FILTER: TITEL
 			Console.WriteLine("Wilt op zoek naar een specifieke titel? Typ 1 van de volgende nummer in:\n1. Ja\n2. Nee");
-			//TITEL KEUZE
+			/*--------------------------------
+			TITEL KEUZE
+			--------------------------------*/
 			var keuzeTitel = Console.ReadLine();
 			while (keuzeTitel != "1" && keuzeTitel != "2")
 			{
-				Console.WriteLine("\n");
 				Console.WriteLine("Kies uit 1 of 2.");
 				keuzeTitel = Console.ReadLine();
 			}
@@ -66,93 +63,154 @@ namespace MyApp
 					}
 				}
 				Console.Clear();
-			} else
+			}
+			Console.Clear();
+			/*--------------------------------
+			VRAAG VOOR FILTER: GENRES
+			--------------------------------*/
+			Console.WriteLine("Wilt op zoek naar een specifieke genres? Typ 1 van de volgende nummer in:\n1. Ja\n2. Nee");
+			var keuzeGenre = Console.ReadLine();
+			while (keuzeGenre != "1" && keuzeGenre != "2")
 			{
-				Console.Clear();
-				//VRAAG VOOR FILTER: GENRES
-				Console.WriteLine("Wilt op zoek naar een specifieke genres? Typ 1 van de volgende nummer in:\n1. Ja\n2. Nee");
-				var keuzeGenre = Console.ReadLine();
-				while (keuzeGenre != "1" && keuzeGenre != "2")
+				Console.WriteLine("Kies uit 1 of 2.");
+				keuzeGenre = Console.ReadLine();
+			}
+			Console.WriteLine("\n");
+			if (keuzeGenre == "1")
+			{
+				//LIJST EN ARRAY OM TE CHECKEN
+				List<string> genresGekozen = new();
+				string[] genreKeuzeUit = { "actie", "animatie", "avontuur", "documentaire", "drama", "familie", "fantasy", "historisch", "horror", "komedie", "misdaad", "mystery" , "oorlog", "romantisch", "sci-fi" };
+				string GenreOpties = "";
+				//PRINT DE OPTIES
+				for (int i = 0; i < genreKeuzeUit.Length; i++)
 				{
-					Console.WriteLine("Kies uit 1 of 2.");
-					keuzeGenre = Console.ReadLine();
+					GenreOpties += "- " + genreKeuzeUit[i] + "\n";
 				}
-				Console.WriteLine("\n");
-				if (keuzeGenre == "1")
+				string keuzesofKeuzeGenre = genreKeuzeUit.Length == 1 ? "keuze is" : "keuzes zijn";
+				Console.WriteLine($"De {keuzesofKeuzeGenre}:\n{GenreOpties}U kunt telkens een genre kiezen, de keuze stopt tot u een lege input geeft of alles is gekozen");
+				//FILTER
+				var genreKeuze = "nothing";
+				while (!string.IsNullOrWhiteSpace(genreKeuze))
 				{
-					//LIJST EN ARRAY OM TE CHECKEN
-					List<string> genres = new();
-					string[] genreKeuzeUit = { "war", "drama" };
-					string GenreKeuze = "";
-					if (genreKeuzeUit.Length > 1)
+					genreKeuze = Console.ReadLine();
+					//STOP BIJ LEGE INPUT OF ALLES IS GEKOZEN
+					if (string.IsNullOrWhiteSpace(genreKeuze)) { break; } 
+					//JUIST GEKOZEN
+					else if (genreKeuzeUit.Contains(genreKeuze.ToLower()))
 					{
-						for (int i = 0; i < genreKeuzeUit.Length; i++)
+						if (genresGekozen != null)
 						{
-							if ((genreKeuzeUit.Length - 1) == i)
+							//GENRE IS EERDER NIET GEKOZEN: VOEG TOE AAN LIST
+							if (!genresGekozen.Contains(genreKeuze.ToLower()))
 							{
-								GenreKeuze += $"{genreKeuzeUit[i]}";
-							} else if ((genreKeuzeUit.Length - 2) == i)
-							{
-								GenreKeuze += $"{genreKeuzeUit[i]} & ";
-							} else
-							{
-								GenreKeuze += $"{genreKeuzeUit[i]}, ";
-							}
+								genresGekozen?.Add(genreKeuze.ToLower());
+								Console.WriteLine($"{genreKeuze.ToLower()} is toegevoegd!");
+							} else { Console.WriteLine($"{genreKeuze.ToLower()} heeft u al eerder gekozen!"); }
 						}
 					} else
 					{
-						GenreKeuze = genreKeuzeUit[0];
+						Console.WriteLine("Keuze niet geldig");
 					}
-					string keuzesofKeuze = genreKeuzeUit.Length == 1 ? "keuze is" : "keuzes zijn";
-					//string uurString = uur == 1 ? "uur" : "uren";
-					Console.WriteLine($"De {keuzesofKeuze}: {GenreKeuze}. U kunt telkens een genre kiezen, de keuze stopt tot u een lege input geeft");
-					var genreKeuze = "nothing";
-					while (!string.IsNullOrWhiteSpace(genreKeuze))
+					Console.WriteLine("\n");
+					//STOP ALS ALLES IS GEKOZEN
+					if (genreKeuzeUit.Length == genresGekozen?.Count) { break; }
+				}
+				//KIES ALLE FILMS VAN DE GENRES
+				if (genresGekozen?.Count > 0)
+				{
+					int i = 0;
+					while (i < films?.Count)
 					{
-						genreKeuze = Console.ReadLine();
-						//STOP BIJ LEGE INPUT
-						if (string.IsNullOrWhiteSpace(genreKeuze))
+						var filmsCheckList = films[i].Genre;
+						if (filmsCheckList != null)
 						{
-							break;
-						} else if (genreKeuzeUit.Contains(genreKeuze.ToLower()))
-						{
-							if (genres != null)
+							//GENRE GEVONDEN
+							if (filmsCheckList.Any(x => genresGekozen.Any(y => y == x))) { i++; } else
+							//GENRE ZIT ER NIET IN
 							{
-								//GENRE IS EERDER NIET GEKOZEN: VOEG TOE AAN LIST
-								if (!genres.Contains(genreKeuze.ToLower()))
-								{
-									genres?.Add(genreKeuze.ToLower());
-									Console.WriteLine($"{genreKeuze.ToLower()} is toegevoegd!");
-								} else { Console.WriteLine($"{genreKeuze.ToLower()} heeft u al eerder gekozen!"); }
-							}
-						} else
-						{
-							Console.WriteLine("Keuze niet geldig");
-						}
-						Console.WriteLine("\n");
-					}
-					//KIES ALLE FILMS VAN DE GENRES
-					if (genres?.Count > 0)
-					{
-						int i = 0;
-						while (i < films?.Count)
-						{
-							var filmsCheckList = films[i].Genre;
-							if (filmsCheckList != null)
-							{
-								//GENRE GEVONDEN
-								if (filmsCheckList.Any(x => genres.Any(y => y == x))) { i++; } else
-								//GENRE ZIT ER NIET IN
-								{
-									films.RemoveAt(i);
-								}
+								films.RemoveAt(i);
 							}
 						}
 					}
 				}
-				Console.Clear();
 			}
+			Console.Clear();
+			/*--------------------------------
+			VRAAG OM TE FILTEREN VOOR TALEN
+			--------------------------------*/
+			Console.WriteLine("Wilt u kiezen uit een taal?\n1: Ja\n2: Nee");
+			var keuzeTaal = Console.ReadLine();
+			while (keuzeTaal != "1" && keuzeTaal != "2")
+			{
+				Console.WriteLine("Kies uit 1 of 2.");
+				keuzeTaal = Console.ReadLine();
+			}
+			Console.WriteLine("\n");
+			if (keuzeTaal == "1")
+			{
+				//LIJST EN ARRAY OM TE CHECKEN
+				List<string> taalGekozen = new();
+				string[] taalKeuzeUit = { "Nederlands", "Engels", "Spaans", "Duits", "Japans" };
+				string taalOpties = "";
+				//PRINT DE OPTIES
+				for (int i = 0; i < taalKeuzeUit.Length; i++)
+				{
+					taalOpties += "- " + taalKeuzeUit[i] + "\n";
+				}
+				string keuzesofKeuzeTaal = taalKeuzeUit.Length == 1 ? "keuze is" : "keuzes zijn";
+				Console.WriteLine($"De {keuzesofKeuzeTaal}:\n{taalOpties}U kunt telkens een taal kiezen, de keuze stopt tot u een lege input geeft");
+				//FILTER
+				string? taalKeuze = "nothing";
+				while (!string.IsNullOrWhiteSpace(taalKeuze))
+				{
+					taalKeuze = Console.ReadLine();
+					if ((taalKeuze != null) && (!string.IsNullOrWhiteSpace(taalKeuze))) { taalKeuze = char.ToUpper(taalKeuze[0]) + taalKeuze[1..].ToLower(); }
+					//STOP BIJ LEGE INPUT OF ALLES IS GEKOZEN
+					if (string.IsNullOrWhiteSpace(taalKeuze)) { break; }
+					//JUIST GEKOZEN
+					else if (taalKeuzeUit.Contains(taalKeuze))
+					{
+						if (taalGekozen != null)
+						{
+							//GENRE IS EERDER NIET GEKOZEN: VOEG TOE AAN LIST
+							if (!taalGekozen.Contains(taalKeuze))
+							{
+								taalGekozen?.Add(taalKeuze);
+								Console.WriteLine($"{taalKeuze} is toegevoegd!");
+							} else { Console.WriteLine($"{taalKeuze} heeft u al eerder gekozen!"); }
+						}
+					} else
+					{
+						Console.WriteLine("Keuze niet geldig");
+					}
+					Console.WriteLine("\n");
+					//STOP ALS ALLES IS GEKOZEN
+					if (taalKeuzeUit.Length == taalGekozen?.Count) { break; }
+				}
+				//KIES ALLE FILMS MET DE JUISTE TAAL
+				if (taalGekozen?.Count > 0)
+				{
+					int i = 0;
+					while (i < films?.Count)
+					{
+						var filmsCheckList = films[i].Taal;
+						if (filmsCheckList != null)
+						{
+							//TAAL GEVONDEN
+							if (filmsCheckList.Any(x => taalGekozen.Any(y => y == x))) { i++; } else
+							//TAAL ZIT ER NIET IN
+							{
+								films.RemoveAt(i);
+							}
+						}
+					}
+				}
+			}
+			Console.Clear();
+			/*--------------------------------
 			//LAAT FILM OVERZICHT ZIEN
+			--------------------------------*/
 			if (films != null)
 			{
 				Console.WriteLine("Uw zoekopdracht heeft de volgende resultat(en) opgeleverd:\n");

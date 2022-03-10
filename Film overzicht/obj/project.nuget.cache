@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0hbEB11wGe7gJ1WoRoOnhpczXadruyJqLIHFRH1SS+pZBy0nFnfL8uGrKnqHJqPrBAOoXA63or00b5nKr7Rwkg==",
+  "dgSpecHash": "Fx/MJd2OxRJjMTDSkb8z+1nFPDxmDAf0jrHjXHa3vSHlWiEC0TI6r7StfvyDGTiXbcMZH8rgJ+o4dbzLf7q+aA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht\\Film overzicht.csproj",
+  "projectFilePath": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\psing\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],

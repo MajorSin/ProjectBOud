@@ -15,3 +15,20 @@ C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Fil
 C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.genruntimeconfig.cache
 C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\Film overzicht\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.csproj.CopyComplete
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\bin\Debug\net6.0\Film overzicht.exe
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\bin\Debug\net6.0\Film overzicht.deps.json
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\bin\Debug\net6.0\Film overzicht.runtimeconfig.json
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\bin\Debug\net6.0\Film overzicht.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\bin\Debug\net6.0\ref\Film overzicht.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\bin\Debug\net6.0\Film overzicht.pdb
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.csproj.AssemblyReference.cache
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.AssemblyInfoInputs.cache
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.AssemblyInfo.cs
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.csproj.CoreCompileInputs.cache
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.csproj.CopyComplete
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\ref\Film overzicht.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.pdb
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\Film overzicht\Film overzicht\obj\Debug\net6.0\Film overzicht.genruntimeconfig.cache

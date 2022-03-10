@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht\\Film overzicht.csproj": {}
+    "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht.csproj": {}
   },
   "projects": {
-    "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht\\Film overzicht.csproj": {
+    "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht\\Film overzicht.csproj",
+        "projectUniqueName": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht.csproj",
         "projectName": "Film overzicht",
-        "projectPath": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht\\Film overzicht.csproj",
+        "projectPath": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht.csproj",
         "packagesPath": "C:\\Users\\psing\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\Film overzicht\\obj\\",
+        "outputPath": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\Film overzicht\\Film overzicht\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\psing\\AppData\\Roaming\\NuGet\\NuGet.Config",
