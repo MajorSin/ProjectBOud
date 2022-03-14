@@ -213,76 +213,79 @@ namespace MyApp
 			--------------------------------*/
 			if (films != null)
 			{
-				Console.WriteLine("Uw zoekopdracht heeft de volgende resultat(en) opgeleverd:\n");
-				foreach (var film in films)
+				if (films.Count > 0)
 				{
-					//KRIJG DE TALEN
-					int taalLength = film?.Taal?.Count ?? 0;
-					string talen = "";
-					for (int i = 0; i < taalLength; i++)
+					Console.WriteLine("Uw zoekopdracht heeft de volgende resultat(en) opgeleverd:\n");
+					foreach (var film in films)
 					{
-						talen += film?.Taal?[i];
-						//VOEG DE JUISTE TEKEN TOE
-						if (taalLength > 1)
+						//KRIJG DE TALEN
+						int taalLength = film?.Taal?.Count ?? 0;
+						string talen = "";
+						for (int i = 0; i < taalLength; i++)
 						{
-							if ((taalLength - 2) == i)
+							talen += film?.Taal?[i];
+							//VOEG DE JUISTE TEKEN TOE
+							if (taalLength > 1)
 							{
-								talen += " & ";
-							} else if ((taalLength - 1) != i)
-							{
-								talen += ", ";
+								if ((taalLength - 2) == i)
+								{
+									talen += " & ";
+								} else if ((taalLength - 1) != i)
+								{
+									talen += ", ";
+								}
 							}
 						}
-					}
-					string taalString = taalLength == 1 ? "Taal" : "Talen";
-					//KRIJG DE GENRE(S)
-					int genreLength = film?.Genre?.Count ?? 0;
-					string genres = "";
-					for (int i = 0; i < genreLength; i++)
-					{
-						genres += film?.Genre?[i];
-						//VOEG DE JUISTE TEKEN TOE
-						if (genreLength > 1)
+						string taalString = taalLength == 1 ? "Taal" : "Talen";
+						//KRIJG DE GENRE(S)
+						int genreLength = film?.Genre?.Count ?? 0;
+						string genres = "";
+						for (int i = 0; i < genreLength; i++)
 						{
-							if ((genreLength - 2) == i)
+							genres += film?.Genre?[i];
+							//VOEG DE JUISTE TEKEN TOE
+							if (genreLength > 1)
 							{
-								genres += " & ";
-							} else if ((genreLength - 1) != i)
-							{
-								genres += ", ";
+								if ((genreLength - 2) == i)
+								{
+									genres += " & ";
+								} else if ((genreLength - 1) != i)
+								{
+									genres += ", ";
+								}
 							}
 						}
+						string genreString = genreLength == 1 ? "Genre" : "Genres";
+						//LAAT ALLES BOVEN DE 1 UUR ZIEN
+						if (film?.Looptijd > 60)
+						{
+							int? uur = film.Looptijd / 60;
+							int? minuten = film.Looptijd - (uur * 60);
+							string uurString = uur == 1 ? "uur" : "uren";
+							string minuutString = minuten == 1 ? "minuut" : "minuten";
+							//PRINT DE GEGEVENS
+							Console.WriteLine($"- {film.Titel} ({film.Jaar}) \n" +
+								$"  - {taalString} : {talen} \n" +
+								$"  - Looptijd: {uur} {uurString} en {minuten} {minuutString}.\n" +
+								$"  - {genreString} : {genres}\n" +
+								$"  - Directeur(s) : {film.Directeur}\n" +
+								$"  - Acteurs : {film.Acteurs}\n" +
+								$"  - Plot: {film.Plot}\n");
+						}
+						//LAAT ALLES ONDER DE 1 UUR ZIEN
+						else
+						{
+							//PRINT DE GEGEVENS
+							Console.WriteLine($"- {film?.Titel} ({film?.Jaar}), \n" +
+								$"  - {taalString} : {talen} \n" +
+								$"  - Looptijd: {film?.Looptijd}.\n" +
+								$"  - {genreString} : {genres}\n" +
+								$"  - Directeur(s) : {film?.Directeur}\n" +
+								$"  - Acteurs : {film?.Acteurs}\n" +
+								$"  - Plot: {film?.Plot}\n");
+						}
 					}
-					string genreString = genreLength == 1 ? "Genre" : "Genres";
-					//LAAT ALLES BOVEN DE 1 UUR ZIEN
-					if (film?.Looptijd > 60)
-					{
-						int? uur = film.Looptijd / 60;
-						int? minuten = film.Looptijd - (uur * 60);
-						string uurString = uur == 1 ? "uur" : "uren";
-						string minuutString = minuten == 1 ? "minuut" : "minuten";
-						//PRINT DE GEGEVENS
-						Console.WriteLine($"- {film.Titel} ({film.Jaar}) \n" +
-							$"  - {taalString} : {talen} \n" +
-							$"  - Looptijd: {uur} {uurString} en {minuten} {minuutString}.\n" +
-							$"  - {genreString} : {genres}\n" +
-							$"  - Directeur(s) : {film.Directeur}\n" +
-							$"  - Acteurs : {film.Acteurs}\n" +
-							$"  - Plot: {film.Plot}\n");
-					}
-					//LAAT ALLES ONDER DE 1 UUR ZIEN
-					else
-					{
-						//PRINT DE GEGEVENS
-						Console.WriteLine($"- {film?.Titel} ({film?.Jaar}), \n" +
-							$"  - {taalString} : {talen} \n" +
-							$"  - Looptijd: {film?.Looptijd}.\n" +
-							$"  - {genreString} : {genres}\n" +
-							$"  - Directeur(s) : {film?.Directeur}\n" +
-							$"  - Acteurs : {film?.Acteurs}\n" +
-							$"  - Plot: {film?.Plot}\n");
-					}
-				}
+				} else { Console.WriteLine("Er zijn geen films gevonden"); }
 			}
 		}
 	}
