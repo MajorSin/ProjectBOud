@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QyXjYblGaLutQofBsodqhX64YzFp1H7p80NcV/Vu0IeZ7nP068vYYD63iKqbJW92fKw+yH0VaYlXe+7vNi9FjA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Omar Karimi\\Desktop\\Projecten\\Hogeschool Rotterdam\\C#\\Modules\\Registreren\\Registreren\\Registreren\\Registreren.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Omar Karimi\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
