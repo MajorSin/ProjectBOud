@@ -1,0 +1,17 @@
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\bin\Debug\net6.0\ticketsReserveren.exe
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\bin\Debug\net6.0\ticketsReserveren.deps.json
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\bin\Debug\net6.0\ticketsReserveren.runtimeconfig.json
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\bin\Debug\net6.0\ticketsReserveren.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\bin\Debug\net6.0\ref\ticketsReserveren.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\bin\Debug\net6.0\ticketsReserveren.pdb
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.csproj.AssemblyReference.cache
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.AssemblyInfoInputs.cache
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.AssemblyInfo.cs
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.csproj.CoreCompileInputs.cache
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ref\ticketsReserveren.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.pdb
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.genruntimeconfig.cache
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\psing\OneDrive\Documenten\HR\Projects\Project B\Code\ticketsReserveren\ticketsReserveren\obj\Debug\net6.0\ticketsReserveren.csproj.CopyComplete

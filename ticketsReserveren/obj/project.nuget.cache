@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NlvrJuSbGLCEDdUgP5lLqitf7o48dlgjdBBF+m5vyZkgOgIXrx8618C1t/jwuPXSMh/pMt9Nr18DrfbEUHO1ag==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\psing\\OneDrive\\Documenten\\HR\\Projects\\Project B\\Code\\ticketsReserveren\\ticketsReserveren\\ticketsReserveren.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\psing\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
