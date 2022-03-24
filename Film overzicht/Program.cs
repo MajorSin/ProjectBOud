@@ -212,12 +212,30 @@ namespace MyApp
 			Console.Clear();
 		}
 		//ZOEKEN
-		public void zoeken()
+		public List<filmOverzicht>? zoeken()
 		{
 			readJson();
 			titelZoeken();
 			genreZoeken();
 			taalZoeken();
+			if (films != null) { 
+				return films;
+			} else
+			{
+				return null;
+			}
+		}
+	}
+	public class Program
+	{
+		static void Main()
+		{
+			//INTRO BERICHT
+			Console.WriteLine("----------------------------\nBIOSCOOP HR - FILMS OVERZICHT\n----------------------------\nHier kunt u een overzicht van alle films vinden.\n");
+			//ROEP DE ZOEK FUNCTIE AAN
+			zoekFilms zoeken = new zoekFilms();
+			var films = zoeken.zoeken();
+
 			if (films != null)
 			{
 				if (films.Count > 0)
@@ -293,18 +311,7 @@ namespace MyApp
 						}
 					}
 				} else { Console.WriteLine("Er zijn geen films gevonden"); }
-			}
-		}
-	}
-	public class Program
-	{
-		static void Main()
-		{
-			//INTRO BERICHT
-			Console.WriteLine("----------------------------\nBIOSCOOP HR - FILMS OVERZICHT\n----------------------------\nHier kunt u een overzicht van alle films vinden.\n");
-			//ROEP DE ZOEK FUNCTIE AAN
-			zoekFilms zoeken = new zoekFilms();
-			zoeken.zoeken();
+			} else { Console.WriteLine("Iets ging fout"); }
 		}
 	}
 }
