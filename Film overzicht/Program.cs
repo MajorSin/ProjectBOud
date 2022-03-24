@@ -3,8 +3,16 @@ using System.Text;
 
 namespace MyApp
 {
-	public class Program
+	class zoekFilms
 	{
+		public List<filmOverzicht>? films;
+		//LEES JSON
+		public void readJson()
+		{
+			var json = File.ReadAllText("../../../films.json", Encoding.GetEncoding("utf-8"));
+			this.films = JsonConvert.DeserializeObject<List<filmOverzicht>>(json);
+		}
+		//WAARDEN VAN DE JSON
 		public class filmOverzicht
 		{
 			public int? Id { get; set; }
@@ -17,18 +25,10 @@ namespace MyApp
 			public string? Acteurs { get; set; }
 			public string? Plot { get; set; }
 		}
-		static void Main()
+		//DE TITEL FILTER
+		public void titelZoeken()
 		{
-			//LAAD JSON IN
-			var json = File.ReadAllText("../../../films.json", Encoding.GetEncoding("utf-8"));
-			var films = JsonConvert.DeserializeObject<List<filmOverzicht>>(json);
-			//INTRO BERICHT
-			Console.WriteLine("----------------------------\nBIOSCOOP HR - FILMS OVERZICHT\n----------------------------\nHier kunt u een overzicht van alle films vinden.\n");
-			//VRAAG VOOR FILTER: TITEL
 			Console.WriteLine("Wilt op zoek naar een specifieke titel? Typ 1 van de volgende nummer in:\n1. Ja\n2. Nee");
-			/*--------------------------------
-			TITEL KEUZE
-			--------------------------------*/
 			var keuzeTitel = Console.ReadLine();
 			while (keuzeTitel != "1" && keuzeTitel != "2")
 			{
@@ -65,9 +65,10 @@ namespace MyApp
 				Console.Clear();
 			}
 			Console.Clear();
-			/*--------------------------------
-			VRAAG VOOR FILTER: GENRES
-			--------------------------------*/
+		}
+		//DE GENRE FILTER
+		public void genreZoeken()
+		{
 			Console.WriteLine("Wilt op zoek naar een specifieke genres? Typ 1 van de volgende nummer in:\n1. Ja\n2. Nee");
 			var keuzeGenre = Console.ReadLine();
 			while (keuzeGenre != "1" && keuzeGenre != "2")
@@ -80,7 +81,7 @@ namespace MyApp
 			{
 				//LIJST EN ARRAY OM TE CHECKEN
 				List<string> genresGekozen = new();
-				string[] genreKeuzeUit = { "actie", "animatie", "avontuur", "documentaire", "drama", "familie", "fantasy", "historisch", "horror", "komedie", "misdaad", "mystery" , "oorlog", "romantisch", "sci-fi" };
+				string[] genreKeuzeUit = { "actie", "animatie", "avontuur", "documentaire", "drama", "familie", "fantasy", "historisch", "horror", "komedie", "misdaad", "mystery", "oorlog", "romantisch", "sci-fi" };
 				string GenreOpties = "";
 				//PRINT DE OPTIES
 				for (int i = 0; i < genreKeuzeUit.Length; i++)
@@ -95,7 +96,7 @@ namespace MyApp
 				{
 					genreKeuze = Console.ReadLine();
 					//STOP BIJ LEGE INPUT OF ALLES IS GEKOZEN
-					if (string.IsNullOrWhiteSpace(genreKeuze)) { break; } 
+					if (string.IsNullOrWhiteSpace(genreKeuze)) { break; }
 					//JUIST GEKOZEN
 					else if (genreKeuzeUit.Contains(genreKeuze.ToLower()))
 					{
@@ -136,9 +137,10 @@ namespace MyApp
 				}
 			}
 			Console.Clear();
-			/*--------------------------------
-			VRAAG OM TE FILTEREN VOOR TALEN
-			--------------------------------*/
+		}
+		//DE TAAL FILTER
+		public void taalZoeken()
+		{
 			Console.WriteLine("Wilt u kiezen uit een taal?\n1: Ja\n2: Nee");
 			var keuzeTaal = Console.ReadLine();
 			while (keuzeTaal != "1" && keuzeTaal != "2")
@@ -208,9 +210,14 @@ namespace MyApp
 				}
 			}
 			Console.Clear();
-			/*--------------------------------
-			//LAAT FILM OVERZICHT ZIEN
-			--------------------------------*/
+		}
+		//ZOEKEN
+		public void zoeken()
+		{
+			readJson();
+			titelZoeken();
+			genreZoeken();
+			taalZoeken();
 			if (films != null)
 			{
 				if (films.Count > 0)
@@ -287,6 +294,17 @@ namespace MyApp
 					}
 				} else { Console.WriteLine("Er zijn geen films gevonden"); }
 			}
+		}
+	}
+	public class Program
+	{
+		static void Main()
+		{
+			//INTRO BERICHT
+			Console.WriteLine("----------------------------\nBIOSCOOP HR - FILMS OVERZICHT\n----------------------------\nHier kunt u een overzicht van alle films vinden.\n");
+			//ROEP DE ZOEK FUNCTIE AAN
+			zoekFilms zoeken = new zoekFilms();
+			zoeken.zoeken();
 		}
 	}
 }
