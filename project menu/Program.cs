@@ -36,7 +36,8 @@ class App
         foreach (var item in overviewMenu)
         {
             Console.WriteLine(item);
-        }
+   
+        } 
 
         Console.WriteLine("\n---------------------------------");
         Console.WriteLine("to see more info press the number of the product");
@@ -97,7 +98,6 @@ class App
             Console.WriteLine("vetten:  0,5 gram");
             Console.WriteLine("eiwitten: 0 gram");
         }
-        else
         return false;
         
     }
