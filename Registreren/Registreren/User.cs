@@ -26,7 +26,13 @@ namespace Registreren
         [JsonProperty("emailAddress")]
         private string EmailAddress { get; set; }
 
-        public User(int id, string username, string password, string firstName, string surame, string gender, string emailAddress)
+        [JsonProperty("birthDate")]
+        private DateTime BirthDate { get; set; }
+
+        [JsonProperty("role")]
+        private string Role { get; set; }
+
+        public User(int id, string username, string password, string firstName, string surame, string gender, DateTime birthDate, string emailAddress, string role)
         {
             this.Id = id;
             this.Username = username;
@@ -34,7 +40,9 @@ namespace Registreren
             this.FirstName = firstName;
             this.Surname = surame;
             this.Gender = gender;
+            this.BirthDate = birthDate;
             this.EmailAddress = emailAddress;
+            this.Role = role;
         }
 
         public string getUsername()
@@ -47,6 +55,11 @@ namespace Registreren
             return this.EmailAddress;
         }
 
+        public string getRole()
+        {
+            return this.Role;
+        }
+
         public override string ToString()
         {
             return String.Format(
@@ -54,8 +67,9 @@ namespace Registreren
                 "  Voornaam: {1}\n" +
                 "  Achternaam: {2}\n" +
                 "  Geslacht: {3}\n" +
-                "  Email Address: {4}",
-                Username, FirstName, Surname, Gender, EmailAddress
+                "  Geboortedatum: {4}\n" +
+                "  Email Address: {5}",
+                Username, FirstName, Surname, Gender, BirthDate.ToString("dd-MM-yyyy"), EmailAddress
             );
         }
     }
