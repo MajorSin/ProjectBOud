@@ -16,10 +16,28 @@ namespace Registreren
             this.History = new Film[0];
         }
 
-        private void showHeader()
+        private static void ShowHeader(string view)
         {
             ConsoleColor color = ConsoleColor.Cyan;
-            string title = @"
+            string title = "";
+            string underline = "";
+            if (view == "Gebruiker")
+            {
+                title = @"
+    _____          _                      _   _                  
+   / ____|        | |                    (_) | |                 
+  | |  __    ___  | |__    _ __   _   _   _  | | __   ___   _ __ 
+  | | |_ |  / _ \ | '_ \  | '__| | | | | | | | |/ /  / _ \ | '__|
+  | |__| | |  __/ | |_) | | |    | |_| | | | |   <  |  __/ | |   
+   \_____|  \___| |_.__/  |_|     \__,_| |_| |_|\_\  \___| |_|
+
+                ";
+                underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+            }
+            else if (view == "Registreren")
+            {
+
+                title = @"
    _____                   _         _                                       
   |  __ \                 (_)       | |                                      
   | |__) |   ___    __ _   _   ___  | |_   _ __    ___   _ __    ___   _ __  
@@ -30,8 +48,22 @@ namespace Registreren
                   |___/    
 
                 ";
+                underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+            } else
+            {
+                title = @"
+   _____           _                                        
+  |_   _|         | |                                       
+    | |    _ __   | |   ___     __ _    __ _    ___   _ __  
+    | |   | '_ \  | |  / _ \   / _` |  / _` |  / _ \ | '_ \ 
+   _| |_  | | | | | | | (_) | | (_| | | (_| | |  __/ | | | |
+  |_____| |_| |_| |_|  \___/   \__, |  \__, |  \___| |_| |_|
+                               __/ |   __/ |               
+                              |___/   |___/
 
-            string underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                ";
+                underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+            }
 
             Console.ForegroundColor = color;
             Console.WriteLine(@"{0}", title);
@@ -41,14 +73,14 @@ namespace Registreren
         }
 
         // Ververst het console-scherm.
-        private void refresh()
+        private static void Refresh(string view)
         {
             Console.Clear();
-            showHeader();
+            ShowHeader(view);
         }
 
         // Keuze van de gebruiker vaststellen.
-        private int awaitResponse(string[] options)
+        private static int AwaitResponse(string[] options)
         {
             int currentSelected = 0;
             bool selectionMade = false;
@@ -106,7 +138,7 @@ namespace Registreren
         }
 
         // Maakt het gebruiker invulveld leeg.
-        static void emptyField(string value, string field)
+        private static void EmptyField(string value, string field)
         {
             Console.CursorTop--;
             if (field == "jaar" || field == "maand" || field == "dag")
@@ -124,7 +156,7 @@ namespace Registreren
         }
 
         // Laat de error zien aan de gebruiker.
-        private void showError(string field, string question, string error)
+        private static void ShowError(string field, string question, string error)
         {
             if (field == "maand" || field == "dag")
             {
@@ -165,7 +197,7 @@ namespace Registreren
         }
 
         // Verbergt de error.
-        private void hideError(string field, string question, string error)
+        private static void HideError(string field, string question, string error)
         {
             if (field == "maand" || field == "dag")
             {
@@ -206,7 +238,7 @@ namespace Registreren
         }
 
         // Checkt of de e-mailadres geldig is
-        private bool validEmail(string value)
+        private static bool ValidEmail(string value)
         {
             var trimmedEmail = value.Trim();
 
@@ -226,14 +258,14 @@ namespace Registreren
         }
 
         // Checkt of de e-mailadres al bestaat
-        private bool emailExists(string value)
+        private static bool EmailExists(string value)
         {
             var jsonFile = File.ReadAllText("../../../users.json");
-            var users = JsonConvert.DeserializeObject<List<User>>(jsonFile);
+            var users = JsonConvert.DeserializeObject<List<Member>>(jsonFile);
 
             for (int i = 0; i < users.Count; i++)
             {
-                if (users[i].getEmailAddress() == value)
+                if (users[i].GetEmailAddress() == value)
                 {
                     return false;
                 }
@@ -242,25 +274,62 @@ namespace Registreren
             return true;
         }
 
-        // Checkt of de gebruikersnaam al bestaat
-        private bool usernameExists(string value)
+        // Checkt of de gebruikersnaam al bestaat.
+        private static bool UsernameExists(string value)
         {
             var jsonFile = File.ReadAllText("../../../users.json");
-            var users = JsonConvert.DeserializeObject<List<User>>(jsonFile);
+            var users = JsonConvert.DeserializeObject<List<Member>>(jsonFile);
 
             for (int i = 0; i < users.Count; i++)
             {
-                if (users[i].getUsername() == value)
+                if (users[i].GetUsername() == value)
                 {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        // Controleert of de gebruiker wel bestaat.
+        private static bool UserExists(string value) 
+        {
+            var jsonFile = File.ReadAllText("../../../users.json");
+            var users = JsonConvert.DeserializeObject<List<Member>>(jsonFile);
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                if (users[i].GetUsername() == value)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static bool CheckCredentials(string username, string password)
+        {
+            var jsonFile = File.ReadAllText("../../../users.json");
+            var users = JsonConvert.DeserializeObject<List<Member>>(jsonFile);
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                if (users[i].GetUsername() == username)
+                {
+                    if (users[i].GetPassword() == password)
+                    {
+                        return true;
+                    } else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
         }
 
         // Controleert op errors in de input van de gebruiker.
-        private string checkErrors(string field, string question, int year = 0, int month = 0)
+        private static string CheckErrors(string field, string question, string username = "", int year = 0, int month = 0)
         {
             if (field == "jaar" || field == "maand" || field == "dag")
             {
@@ -285,7 +354,8 @@ namespace Registreren
                         error = " Geen spaties";
                         break;
                     case string a when a.Any(c => !char.IsLetter(c)) && (field != "emailAddress" && field != "wachtwoord"
-                        && field != "jaar" && field != "maand" && field != "dag" && field != "gebruikersnaam"):
+                        && field != "jaar" && field != "maand" && field != "dag" && field != "gebruikersnaam" 
+                        && field != "username" && field != "password"):
                         error = " Geen cijfers of andere symbolen";
                         break;
                     case string a when a.Length < 2 && field == "voornaam":
@@ -300,14 +370,20 @@ namespace Registreren
                     case string a when (a.ToLower() != "man" && a.ToLower() != "vrouw") && field == "geslacht":
                         error = " Geslacht niet juist";
                         break;
-                    case string a when !validEmail(a) && field == "emailAddress":
+                    case string a when !ValidEmail(a) && field == "emailAddress":
                         error = " E-mail klopt niet";
                         break;
-                    case string a when !emailExists(a) && field == "emailAddress":
+                    case string a when !EmailExists(a) && field == "emailAddress":
                         error = " E-mail is al in gebruik door iemand anders";
                         break;
-                    case string a when !usernameExists(a) && field == "gebruikersnaam":
+                    case string a when !UsernameExists(a) && field == "gebruikersnaam":
                         error = " Gebruikersnaam bestaat al kies iets anders";
+                        break;
+                    case string a when !UserExists(a) && field == "username":
+                        error = " Gebruikersnaam bestaat niet";
+                        break;
+                    case string a when !CheckCredentials(username, a) && field == "password":
+                        error = " Wachtwoord is incorrect.";
                         break;
                     case string a when a.Any(c => char.IsLetter(c)) && (field == "jaar" || field == "maand" || field == "dag"):
                         error = " Dit veld mag geen letters bevatten";
@@ -381,8 +457,8 @@ namespace Registreren
                 }
                 if (error != "")
                 {
-                    emptyField(value, field);
-                    showError(field, question, error);
+                    EmptyField(value, field);
+                    ShowError(field, question, error);
                     if (field == "jaar" || field == "maand" || field == "dag")
                     {
                         Console.CursorLeft = field.Length + 4;
@@ -392,7 +468,7 @@ namespace Registreren
                         Console.CursorLeft = 2;
                     }
                     value = Console.ReadLine();
-                    hideError(field, question, error);
+                    HideError(field, question, error);
                     error = "";
                 }
                 else
@@ -404,7 +480,7 @@ namespace Registreren
         }
 
         // Bewerkt de balk die verteld hoever je bent met registreren
-        private void updateBar(int value, (int, int) cursorPosition, int count)
+        private static void UpdateBar(int value, (int, int) cursorPosition, int count)
         {
             int procent = value;
             string bar = $"  {procent}% klaar:  ";
@@ -431,45 +507,83 @@ namespace Registreren
             Console.SetCursorPosition(cursorPosition.Item1, cursorPosition.Item2 + 1);
         }
 
-        // Account aanmaken proces.
-        private void makeAccount()
+        // Inloggen in het reserveringssysteem.
+        private static void Login()
         {
-            refresh();
+            Refresh("Inloggen");
+
+            string userCredential = "  Gebruikersnaam:";
+            Console.WriteLine(userCredential);
+            string username = CheckErrors("username", userCredential);
+
+            string passwordCredential = "\n  Wachtwoord:";
+            Console.WriteLine(passwordCredential);
+            string password = CheckErrors("password", passwordCredential, username);
+
+            VerifyLogin(username, password);
+
+            Console.WriteLine();
+
+            string[] options = new string[]
+            {
+                    "Log in"
+            };
+
+            int choice = AwaitResponse(options);
+
+            Refresh("Inloggen");
+
+            Console.WriteLine("  Ingelogd!\n");
+
+            options = new string[]
+            {
+                    "Terug",
+            };
+
+            choice = AwaitResponse(options);
+
+            Display();
+        }
+
+        // Account aanmaken proces.
+        private static void Register()
+        {
+            Refresh("Registreren");
 
             int count = 0;
             (int, int) currentPosition = Console.GetCursorPosition();
-            updateBar(0, currentPosition, count);
+            UpdateBar(0, currentPosition, count);
 
             string questionOne = "\n  [1] Wat is uw naam?";
             Console.WriteLine(questionOne);
-            string firstname = checkErrors("voornaam", questionOne);
+            string firstname = CheckErrors("voornaam", questionOne);
 
             count++;
             currentPosition = Console.GetCursorPosition();
-            updateBar(20, currentPosition, count);
+            UpdateBar(20, currentPosition, count);
 
             string questionTwo = "  [2] Wat is uw achternaam?";
             Console.WriteLine(questionTwo);
-            string surname = checkErrors("achternaam", questionTwo);
+            string surname = CheckErrors("achternaam", questionTwo);
 
             count++;
             currentPosition = Console.GetCursorPosition();
-            updateBar(40, currentPosition, count);
+            UpdateBar(40, currentPosition, count);
 
             string questionThree = "  [3] Wat is uw geslacht? Man/Vrouw";
             Console.WriteLine(questionThree);
-            string gender = checkErrors("geslacht", questionThree);
+            string gender = CheckErrors("geslacht", questionThree);
 
             string questionFour = "\n  [4] Wat is uw geboortedatum?";
             Console.WriteLine(questionFour);
             Console.Write("  Jaar: ");
-            string year = checkErrors("jaar", questionFour);
+            string year = CheckErrors("jaar", questionFour);
 
             Console.Write("  Maand: ");
-            string month = checkErrors("maand", questionFour);
+            string month = CheckErrors("maand", questionFour);
 
             Console.Write("  Dag: ");
-            string day = checkErrors("dag", questionFour, int.Parse(year), int.Parse(month));
+            string day = CheckErrors("dag", questionFour, "", int.Parse(year), int.Parse(month));
 
 
             Tuple<int, int, int> collection = Tuple.Create(int.Parse(year), int.Parse(month), int.Parse(day));
@@ -477,36 +591,36 @@ namespace Registreren
 
             count++;
             currentPosition = Console.GetCursorPosition();
-            updateBar(60, currentPosition, count);
+            UpdateBar(60, currentPosition, count);
 
             count++;
-            refresh();
+            Refresh("Registreren");
             currentPosition = Console.GetCursorPosition();
-            updateBar(0, currentPosition, count);
-            updateBar(80, currentPosition, count);
+            UpdateBar(0, currentPosition, count);
+            UpdateBar(80, currentPosition, count);
 
             string questionFive = "\n  [5] Wat is uw e-mailaddres?";
             Console.WriteLine(questionFive);
-            string emailAddress = checkErrors("emailAddress", questionFive);
+            string emailAddress = CheckErrors("emailAddress", questionFive);
 
             string questionSix = "\n  [6] Welke gebruikersnaam wilt u?";
             Console.WriteLine(questionSix);
-            string username = checkErrors("gebruikersnaam", questionSix);
+            string username = CheckErrors("gebruikersnaam", questionSix);
 
             string questionSeven = "\n  [7] Wat wordt uw wachtwoord?";
             Console.WriteLine(questionSeven);
-            string password = checkErrors("wachtwoord", questionSeven);
+            string password = CheckErrors("wachtwoord", questionSeven);
 
             count++;
             currentPosition = Console.GetCursorPosition();
-            updateBar(100, currentPosition, count);
+            UpdateBar(100, currentPosition, count);
 
             string[] options = new string[]
             {
                     "Bevestigen",
             };
 
-            int choice = awaitResponse(options);
+            int choice = AwaitResponse(options);
 
             var jsonFile = File.ReadAllText("../../../users.json");
             var users = JsonConvert.DeserializeObject<List<Member>>(jsonFile);
@@ -516,7 +630,7 @@ namespace Registreren
             var stringifiedUsers = JsonConvert.SerializeObject(users, Formatting.Indented);
             File.WriteAllText("../../../users.json", stringifiedUsers);
 
-            refresh();
+            Refresh("Registreren");
 
             Console.WriteLine("  Account is gemaakt!\n");
 
@@ -525,13 +639,13 @@ namespace Registreren
                     "Terug",
             };
 
-            choice = awaitResponse(options);
+            choice = AwaitResponse(options);
 
-            register();
+            Display();
         }
 
         // Alle registraties weghalen.
-        private void resetRegistrations()
+        private static void ResetRegistrations()
         {
             var jsonFile = File.ReadAllText("../../../users.json");
             var users = JsonConvert.DeserializeObject<List<User>>(jsonFile);
@@ -540,14 +654,14 @@ namespace Registreren
             var stringifiedUsers = JsonConvert.SerializeObject(users);
             File.WriteAllText("../../../users.json", stringifiedUsers);
 
-            refresh();
-            showRegistrations();
+            Refresh("Gebruiker");
+            ShowRegistrations();
         }
 
         // Laat accounts zien die momenteel geregistreerd staan.
-        private void showRegistrations()
+        private static void ShowRegistrations()
         {
-            refresh();
+            Refresh("Gebruiker");
 
             var jsonFile = File.ReadAllText("../../../users.json");
             var users = JsonConvert.DeserializeObject<List<User>>(jsonFile);
@@ -560,7 +674,7 @@ namespace Registreren
             {
                 foreach (var user in users)
                 {
-                    if (user.getRole() == "Member")
+                    if (user.GetRole() == "Member")
                     {
                         Console.WriteLine(user);
                         Console.WriteLine("  ---------------------------------------------");
@@ -576,43 +690,79 @@ namespace Registreren
                     "Terug",
             };
 
-            int choice = awaitResponse(options);
+            int choice = AwaitResponse(options);
 
             switch (choice)
             {
                 case 0:
-                    resetRegistrations();
+                    ResetRegistrations();
                     break;
                 case 1:
-                    register();
+                    Display();
                     break;
             }
         }
 
         // Registreren scherm.
-        public static void register()
+        public static void Display()
         {
-            Console.Clear();
-            showHeader();
+            Refresh("Gebruiker");
+
+            User user = GetUser();
+
+            if (user != null)
+            {
+                Member member = null;
+
+                var jsonFile = File.ReadAllText("../../../users.json");
+                var users = JsonConvert.DeserializeObject<List<Member>>(jsonFile);
+
+                for (int i = 0; i < users.Count; i++)
+                {
+                    if (users[i].GetUsername() == user.GetUsername())
+                    {
+                        member = users[i];
+                    }
+                }
+
+                Console.Write($"  Ingelogd als: ");
+                Console.ForegroundColor = member.GetGender() == "Man" ? ConsoleColor.Blue : ConsoleColor.Magenta;
+                Console.WriteLine($"{member.GetFirstName()}\n");
+                Console.ResetColor();
+            }
+
+            Console.WriteLine("  Gebruik pijltjestoetsen ↑ en ↓ om te navigeren\n  en druk enter om een optie te kiezen.\n");
 
             string[] options = new string[]
             {
-                    "Account maken",
+                    user != null ? "Uitloggen" : "Inloggen",
+                    "Registreren",
                     "Registraties tonen"
             };
 
-            int choice = awaitResponse(options);
+            int choice = AwaitResponse(options);
 
             switch (choice)
             {
                 case 0:
-                    makeAccount();
+                    if (user != null)
+                    {
+                        user.LogOut();
+                        Display();
+                    } else
+                    {
+                        Login();
+                    }
                     break;
                 case 1:
-                    showRegistrations();
+                    Register();
+                    break;
+                case 2:
+                    ShowRegistrations();
                     break;
             }
-            Console.Clear();
+
+            Refresh("Gebruiker");
         }
     }
 }

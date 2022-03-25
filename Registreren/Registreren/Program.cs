@@ -6,7 +6,7 @@ namespace Registreren
     {    
         static void Main(string[] args)
         {
-            Member.register();
+            Member.Display();
         }
     }
 }
