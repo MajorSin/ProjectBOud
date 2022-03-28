@@ -68,7 +68,7 @@ namespace Registreren
 
         public void LogOut()
         {
-            CurrentUser = null;
+            SetUser(null);
         }
 
         public static User GetUser()
@@ -79,6 +79,11 @@ namespace Registreren
             }
 
             return null;
+        }
+
+        public static void SetUser(User user)
+        {
+            CurrentUser = user;
         }
 
         public string GetFirstName()

@@ -13,7 +13,23 @@ namespace Registreren
         public Member(int id, string username, string password, string firstName, string surame, string gender, DateTime birthDate, string emailAddress) : 
             base(id, username, password, firstName, surame, gender, birthDate, emailAddress, "Member")
         {
-            this.History = new Film[0];
+            var jsonFile = File.ReadAllText("../../../films.json");
+            var films = JsonConvert.DeserializeObject<List<Film>>(jsonFile);
+
+            Film film1 = films[0];
+            Film film2 = films[1];
+            Film film3 = films[2];
+
+            this.History = new Film[3] {
+                new Film(film1.Id, film1.Titel, film1.Jaar, film1.Taal, film1.Looptijd, film1.Genre, film1.Directeur, film1.Acteurs, film1.Plot),
+                new Film(film2.Id, film2.Titel, film2.Jaar, film2.Taal, film2.Looptijd, film2.Genre, film2.Directeur, film2.Acteurs, film2.Plot),
+                new Film(film3.Id, film3.Titel, film3.Jaar, film3.Taal, film3.Looptijd, film3.Genre, film3.Directeur, film3.Acteurs, film3.Plot)
+            };
+        }
+
+        public Film[] GetHistory()
+        {
+            return this.History;
         }
 
         private static void ShowHeader(string view)
@@ -21,9 +37,11 @@ namespace Registreren
             ConsoleColor color = ConsoleColor.Cyan;
             string title = "";
             string underline = "";
-            if (view == "Gebruiker")
+
+            switch (view)
             {
-                title = @"
+                case "Gebruiker":
+                    title = @"
     _____          _                      _   _                  
    / ____|        | |                    (_) | |                 
   | |  __    ___  | |__    _ __   _   _   _  | | __   ___   _ __ 
@@ -31,13 +49,11 @@ namespace Registreren
   | |__| | |  __/ | |_) | | |    | |_| | | | |   <  |  __/ | |   
    \_____|  \___| |_.__/  |_|     \__,_| |_| |_|\_\  \___| |_|
 
-                ";
-                underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            }
-            else if (view == "Registreren")
-            {
-
-                title = @"
+                    ";
+                    underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                    break;
+                case "Registreren":
+                    title = @"
    _____                   _         _                                       
   |  __ \                 (_)       | |                                      
   | |__) |   ___    __ _   _   ___  | |_   _ __    ___   _ __    ___   _ __  
@@ -47,11 +63,11 @@ namespace Registreren
                    __/ |                                                    
                   |___/    
 
-                ";
-                underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
-            } else
-            {
-                title = @"
+                    ";
+                    underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                    break;
+                case "Inloggen":
+                    title = @"
    _____           _                                        
   |_   _|         | |                                       
     | |    _ __   | |   ___     __ _    __ _    ___   _ __  
@@ -61,8 +77,21 @@ namespace Registreren
                                __/ |   __/ |               
                               |___/   |___/
 
-                ";
-                underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                    ";
+                    underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                    break;
+                case "Geschiedenis":
+                    title = @"
+    _____                       _       _              _                  _       
+   / ____|                     | |     (_)            | |                (_)      
+  | |  __    ___   ___    ___  | |__    _    ___    __| |   ___   _ __    _   ___ 
+  | | |_ |  / _ \ / __|  / __| | '_ \  | |  / _ \  / _` |  / _ \ | '_ \  | | / __|
+  | |__| | |  __/ \__ \ | (__  | | | | | | |  __/ | (_| | |  __/ | | | | | | \__ \
+   \_____|  \___| |___/  \___| |_| |_| |_|  \___|  \__,_|  \___| |_| |_| |_| |___/
+                                                                                 
+                    ";
+                    underline = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+                    break;
             }
 
             Console.ForegroundColor = color;
@@ -655,6 +684,8 @@ namespace Registreren
             File.WriteAllText("../../../users.json", stringifiedUsers);
 
             Refresh("Gebruiker");
+
+            SetUser(null);
             ShowRegistrations();
         }
 
@@ -703,6 +734,45 @@ namespace Registreren
             }
         }
 
+        // Laat geschiedenis zien van de gebruiker.
+        public static void ShowHistory()
+        {
+            Refresh("Geschiedenis");
+
+            User user = GetUser();
+            Member member = null;
+
+            var jsonFile = File.ReadAllText("../../../users.json");
+            var members = JsonConvert.DeserializeObject<List<Member>>(jsonFile);
+
+            for (int i = 0; i < members.Count; i++) { 
+                if (members[i].GetUsername() == user.GetUsername())
+                {
+                    member = members[i];
+                    break;
+                }
+            }
+
+            Film[] films = member.GetHistory();
+
+            for (int film = 0; film < films.Length; film++)
+            {
+                Console.WriteLine(films[film]);
+                Console.WriteLine("  ---------------------------------------------");
+            }
+
+            Console.WriteLine("");
+
+            string[] options = new string[]
+            {
+                    "Terug",
+            };
+
+            int choice = AwaitResponse(options);
+
+            Display();
+        }
+
         // Registreren scherm.
         public static void Display()
         {
@@ -737,7 +807,8 @@ namespace Registreren
             {
                     user != null ? "Uitloggen" : "Inloggen",
                     "Registreren",
-                    "Registraties tonen"
+                    "Registraties tonen",
+                    user != null ? "Geschiedenis" : ""
             };
 
             int choice = AwaitResponse(options);
@@ -759,6 +830,9 @@ namespace Registreren
                     break;
                 case 2:
                     ShowRegistrations();
+                    break;
+                case 3:
+                    ShowHistory();
                     break;
             }
 
