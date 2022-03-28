@@ -1,0 +1,15 @@
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\bin\Debug\net6.0\inlog admin.exe
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\bin\Debug\net6.0\inlog admin.deps.json
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\bin\Debug\net6.0\inlog admin.runtimeconfig.json
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\bin\Debug\net6.0\inlog admin.dll
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\bin\Debug\net6.0\ref\inlog admin.dll
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\bin\Debug\net6.0\inlog admin.pdb
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\inlog admin.csproj.AssemblyReference.cache
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\inlog admin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\inlog admin.AssemblyInfoInputs.cache
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\inlog admin.AssemblyInfo.cs
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\inlog admin.csproj.CoreCompileInputs.cache
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\inlog admin.dll
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\ref\inlog admin.dll
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\inlog admin.pdb
+C:\Users\anoma\source\repos\inlog admin_project\inlog admin\inlog admin\obj\Debug\net6.0\inlog admin.genruntimeconfig.cache
